@@ -18,4 +18,12 @@ router.post('/', async (req,res) => {
     }).catch(err => res.json({status: 400, err: err}))
 })
 
+router.delete('/id/:id', (req,res) =>{
+    Song.findByIdAndDelete({_id: req.params.id}).then(() => {
+        Song.find({}).then(allSongs => {
+            res.json(allSongs)
+        }).catch(err => res.json({status: 400, err: err}))
+    }).catch(err => res.json({status: 400, err: err}))
+})
+
 module.exports = router
