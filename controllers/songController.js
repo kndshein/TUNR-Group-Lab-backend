@@ -9,4 +9,13 @@ router.get('/', async (req,res) => {
     }).catch(err => res.json({status: 400, err: err}))
 })
 
+router.post('/', async (req,res) => {
+    const song = req.body
+    Song.create(song).then(() =>{
+        Song.find({}).then(allSongs => {
+            res.json(allSongs)
+        }).catch(err => res.json({status: 400, err: err}))
+    }).catch(err => res.json({status: 400, err: err}))
+})
+
 module.exports = router
