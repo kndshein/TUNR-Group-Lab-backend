@@ -6,12 +6,15 @@ const logger = require("morgan");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("./db/connection");
+const songRouter = require('./controllers/songController.js')
 
 ////// MIDDLEWARE //////
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use("/tunatunr", songRouter)
 
 app.get("/", (req, res) => {
   res.json({
