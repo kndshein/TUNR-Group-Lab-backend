@@ -6,6 +6,7 @@ const songSchema = new Schema({
   artist: String,
   album: String,
   time: String,
+  favorite: { type: Boolean, default: false },
 });
 
 const Song = mongoose.model("Song", songSchema);
